@@ -1,4 +1,4 @@
-package com.example.coroutineflow.lesson
+package com.example.coroutineflow.lesson2
 
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
@@ -18,9 +18,10 @@ fun getFlowByFlowOfBuilder(): Flow<Int> {
 }
 
 fun getFlowByBuilderFlow(): Flow<Int> {
-    val numbers = listOf(3, 4, 8, 16, 5, 7, 11, 32, 41, 28, 43, 47, 84, 116, 53, 59, 61)
+    val firstFlow = getFlowByFlowOfBuilder()
     return flow {
-        numbers.forEach {
+        firstFlow.collect {
+            println("Emitted from first flow: $it")
             emit(it)
         }
     }
